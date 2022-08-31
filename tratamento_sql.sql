@@ -83,10 +83,11 @@ UPDATE historicos_banco SET historico_inadimplencia = CASE
 # Criação de chaves primarias nas tabelas
 # Na tabela dados_mutuaris existem dados na pessoa_id em branco, assim imposibilitando a 
 #criação de chave primaria no campo(Chave primária representa registro unico). 
+#por hora não vou adicionar as chaves
 
-ALTER TABLE dados_mutuarios ADD PRIMARY KEY (pessoa_id);
-ALTER TABLE emprestimos ADD PRIMARY KEY(emprestimo_id);
-ALTER TABLE historicos_banco ADD PRIMARY KEY(historico_id);
+#ALTER TABLE dados_mutuarios ADD PRIMARY KEY (pessoa_id);
+#ALTER TABLE emprestimos ADD PRIMARY KEY(emprestimo_id);
+#ALTER TABLE historicos_banco ADD PRIMARY KEY(historico_id);
 
 #União das tabelas dados_mutuarios, emprestimos e historicos_banco através dos ids da tabela id,
 #foi utilizado o inner join.

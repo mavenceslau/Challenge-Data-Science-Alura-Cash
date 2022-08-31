@@ -35,6 +35,9 @@ CHANGE person_id pessoa_id VARCHAR(16),
 CHANGE loan_id emprestimo_id VARCHAR(16),
 CHANGE cb_id historico_id VARCHAR(16);
 
+#Tradução dos registros
+#Tabela dados_mutuarios
+
 SELECT DISTINCT(pessoa_status_propriedade) FROM dados_mutuarios;
 
 #Na query é verificado o registro, caso seja algum dos especificados a atualização

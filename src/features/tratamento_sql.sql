@@ -1,14 +1,14 @@
 #Tratamento de Dados SQL
 
-#Tradução das colunas
+#Tradução das colunas e adequação dos tipos de dados
 #Tabela dados_mutuarios
 
 ALTER TABLE dados_mutuarios 
 CHANGE person_id pessoa_id VARCHAR(16),
 CHANGE person_age pessoa_idade INT,
-CHANGE person_income pessoa_salario_anual float,
-CHANGE person_home_ownership pessoa_status_propriedade varchar(16),
-CHANGE person_emp_length pessoa_tempo_trabalho int;
+CHANGE person_income pessoa_salario_anual float, # tipo float mais adequado para valor de salário
+CHANGE person_home_ownership pessoa_status_propriedade varchar(16), # Aumentei o tamanho do campo de 8 para 16, pois não fico muito limitado
+CHANGE person_emp_length pessoa_tempo_trabalho int; # Tempo de trabalho em anos, o tipo int é mais adequado do que double
 
 #Tabela emprestimos
 
@@ -16,10 +16,10 @@ ALTER TABLE emprestimos
 CHANGE loan_id emprestimo_id VARCHAR(16),
 CHANGE loan_intent emprestimo_motivo VARCHAR(32),
 CHANGE loan_grade emprestimo_pontuacao VARCHAR(1),
-CHANGE loan_amnt emprestimo_valor_total float,
-CHANGE loan_int_rate emprestimo_taxa_juros float,
-CHANGE loan_status emprestimo_inadimplente bit(1),
-CHANGE loan_percent_income emprestimo_renda_percentual float;
+CHANGE loan_amnt emprestimo_valor_total float, # Para expressar valor, float é mais adequado do que int
+CHANGE loan_int_rate emprestimo_taxa_juros float, # Não há necessidade de double
+CHANGE loan_status emprestimo_inadimplente bit(1), # Bit é melhor para registros booleanos
+CHANGE loan_percent_income emprestimo_renda_percentual float; # Não há necessidade de double
 
 #Tabela historico_banco
 
@@ -85,16 +85,18 @@ UPDATE historicos_banco SET historico_inadimplencia = CASE
    
 # Criação de chaves primarias nas tabelas
 # Na tabela dados_mutuaris existem dados na pessoa_id em branco, assim imposibilitando a 
-#criação de chave primaria no campo(Chave primária representa registro unico). 
-#por hora não vou adicionar as chaves
+# criação de chave primaria no campo(Chave primária representa registro unico). 
+# por hora não vou adicionar as chaves, pois não irei remover valores nulos, talvez possam ser informações
+# uteis.
 
 #ALTER TABLE dados_mutuarios ADD PRIMARY KEY (pessoa_id);
 #ALTER TABLE emprestimos ADD PRIMARY KEY(emprestimo_id);
 #ALTER TABLE historicos_banco ADD PRIMARY KEY(historico_id);
 
 #União das tabelas dados_mutuarios, emprestimos e historicos_banco através dos ids da tabela id,
-#foi utilizado o inner join.
+#foi utilizado o inner join para criar a tabela cliente.
 
+CREATE TABLE cliente( 
 SELECT 
     M.pessoa_idade,
     M.pessoa_salario_anual,
@@ -111,4 +113,7 @@ SELECT
 FROM id AS I
 INNER JOIN dados_mutuarios AS M ON I.pessoa_id = M.pessoa_id
 INNER JOIN emprestimos AS E ON I.emprestimo_id = E.emprestimo_id
-INNER JOIN historicos_banco AS H ON I.historico_id = H.historico_id;
+INNER JOIN historicos_banco AS H ON I.historico_id = H.historico_id
+);
+
+# Logo foi utilizado o MySQL Workbench para exportar a tabela cliente para um arquivo .csv

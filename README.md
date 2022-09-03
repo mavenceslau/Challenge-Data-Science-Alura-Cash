@@ -68,3 +68,9 @@ Foram efetuados alguns tratamentos nos dados, como por exemplo, a alteração de
 O arquivo detalhado pode ser visto nesse [link](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/blob/master/src/features/tratamento_sql.sql).
 Ao final do tratamento, foi criada uma unica tabela que contém dados dos clientes, essa tabela foi exportada para um arquivo [.csv](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/tree/master/data/interim),
 que será utilizado durante as próximas semanas do desafio.
+
+## Semana 2 - Em construção
+
+## Semana 3 - Em construção
+
+## Semana 4 - Em construção

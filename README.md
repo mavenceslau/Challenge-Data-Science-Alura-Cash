@@ -6,7 +6,7 @@ uma análise dos dados dos clientes, tendo como objetivo indentificar padrões e
 Durante 4 semanas os dados serão analisados e entendidos a fim de criar um modelo de Machine Learning para classificar potenciais clientes inadimplentes
 e resolver o problema da **Alura Cash**.
 
-## Semana 1 - Tratamento de dados: entendendo como tratar dados com SQL
+## Semana 01 - Tratamento de dados: entendendo como tratar dados com SQL
 
 Para esse projeto será utilizado o [Cookiecutter](https://www.cookiecutter.io/), para criação e organização dos diretórios do projeto. Abaixo pode ser visto 
 como esta organização será feita.
@@ -49,7 +49,7 @@ Organização do Projeto
     │   ├── features       <- Scripts para transformar dados brutos em recursos para modelagem
     │   │   └── build_features.py
     │   │
-    │   ├── models         <- Scripts para treinar modelos e então then usar treinado modelos para criar
+    │   ├── models         <- Scripts para treinar modelos e então usar modelos treinados para criar
     │   │   │                 predições
     │   │   ├── predict_model.py
     │   │   └── train_model.py
@@ -69,8 +69,8 @@ O arquivo detalhado pode ser visto nesse [link](https://github.com/mavenceslau/C
 Ao final do tratamento, foi criada uma unica tabela que contém dados dos clientes, essa tabela foi exportada para um arquivo [.csv](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/tree/master/data/interim),
 que será utilizado durante as próximas semanas do desafio.
 
-## Semana 2 - Em construção
+## Semana 02 - Aprendendo com os dados: criando um modelo de previsão de inadimplência - Em construção
 
-## Semana 3 - Em construção
+## Semana 03 - Em construção
 
-## Semana 4 - Em construção
+## Semana 04 - Em construção

@@ -64,8 +64,12 @@ Organização do Projeto
 
 Na primeira semana com o arquivo do tipo **Dump** disponibilizado pelo setor financeiro da **Alura Cash** e utilizando o [MySQL Workbench](https://www.mysql.com/products/workbench/)
 foi criado um banco de dados com informações dos clientes. As informações dos clientes estão divididas em 4 tabelas.
+
+Para um maior entendimento dos dados, foi fornecido um [Dicionário de Dados](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/blob/master/references/Dicionario_de_Dados.md) detalhando o que cada coluna do banco de dados representa.
+
 Foram efetuados alguns tratamentos nos dados, como por exemplo, a alteração de tipos de dados das colunas, tradução das colunas e de registros. 
 O arquivo detalhado pode ser visto nesse [link](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/blob/master/src/features/tratamento_sql.sql).
+
 Ao final do tratamento, foi criada uma unica tabela que contém dados dos clientes, essa tabela foi exportada para um arquivo [.csv](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/tree/master/data/interim),
 que será utilizado durante as próximas semanas do desafio.
 

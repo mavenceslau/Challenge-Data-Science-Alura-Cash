@@ -75,6 +75,12 @@ que será utilizado durante as próximas semanas do desafio.
 
 ## Semana 02 - Aprendendo com os dados: criando um modelo de previsão de inadimplência - Em construção
 
+Duarante essa semana foi feita uma limpeza mais completa nos dados, como remoção de dados nulos e de outliers. O processo detalhado pode ser visto nesse [notebook](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/blob/master/notebooks/Notebook_01_Limpeza_de_Dados.ipynb).
+
+Foram gerados alguns gráficos para maior entendimento dos dados, nesse [notebook](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/blob/master/notebooks/Notebook_02_Vizualiza%C3%A7%C3%A3o_de_Dados.ipynb).
+
+E por fim foram criados modelos de classificação e medidos seus desempenhos, o melhor deles foi melhorado com hiperparâmetros, os processos detalhados estão [aqui](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/blob/master/notebooks/Notebook_03_Modelos_Machine_Learning.ipynb).
+
 ## Semana 03 - Em construção
 
 ## Semana 04 - Em construção

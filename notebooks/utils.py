@@ -2,6 +2,10 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import ConfusionMatrixDisplay
 
 
 #Configurações de exibição
@@ -18,7 +22,6 @@ def config_graficos():
 
 #configuração de parametros de exibição de valores fora da notação cientifica
 #https://stackoverflow.com/questions/63372647/disable-scientific-notation-and-offset-in-pandas-plot-function
-
 
 
 import matplotlib as mpl
@@ -57,3 +60,49 @@ def remove_outlier(data, variavel, nome_variavel):
     selecao = (variavel >= limite_inferior) & (variavel <= limite_superior)
     data = data[selecao]
     return data        
+
+#Função para separação dos dados do dataset, em dados de treino e dados de teste
+def treino_teste(x, y, SEED):
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.25, random_state = SEED)
+    return x_train, x_test, y_train, y_test    
+
+#Função para treinamento e previsão do modelo
+def classificador(classificador, x_train, x_test, y_train):
+    modelo = classificador.fit(x_train, y_train)
+    y_pred = modelo.predict(x_test)
+    return y_pred
+
+#Função para realizar metricas do modelo
+def metricas(y_pred, y_test):
+    print("Acurácia:", round(metrics.accuracy_score(y_test, y_pred), 2))
+    print("Precisão:", round(metrics.precision_score(y_test, y_pred), 2))
+    print("Recall:", round(metrics.recall_score(y_test, y_pred), 2)) 
+    print("F1:", round(metrics.f1_score(y_test, y_pred), 2))
+    #print("Matriz de Confusão:")
+    cm = confusion_matrix(y_test, y_pred)
+    disp = ConfusionMatrixDisplay(confusion_matrix = cm)
+    disp.plot()
+    
+#Curva Roc
+def curva_roc(classificador, x_test, y_test):
+    y_pred_proba = classificador.predict_proba(x_test)[::, 1]
+    fpr, tpr, _ = metrics.roc_curve(y_test, y_pred_proba)
+    auc = metrics.roc_auc_score(y_test, y_pred_proba)
+    plt.rcParams['figure.figsize'] = (20, 8)
+    plt.plot(fpr, tpr, label = 'LR, auc = ' + str(auc))
+    plt.plot([0,1], [0,1], color = 'red', lw = 2, linestyle = '--')
+    plt.legend(loc = 4)
+
+#Comparação de Metricas
+def comp_metricas(classificadores, x, y, SEED):
+    x_train, x_test, y_train, y_test = treino_teste(x, y, SEED)
+    for classifier in classificadores:
+        cf = classifier
+        y_pred = classificador(cf, x_train, x_test, y_train)
+        name = classifier.__class__.__name__
+        print("="*30)
+        print(name)
+        print('')
+        print('****Resultados****')
+        metricas(y_pred, y_test)
+        print('')

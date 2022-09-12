@@ -73,28 +73,36 @@ def classificador(classificador, x_train, x_test, y_train):
     return y_pred
 
 #Função para realizar metricas do modelo
-def metricas(y_pred, y_test):
+def metricas(y_pred, y_test, labels):
     print("Acurácia:", round(metrics.accuracy_score(y_test, y_pred), 2))
     print("Precisão:", round(metrics.precision_score(y_test, y_pred), 2))
     print("Recall:", round(metrics.recall_score(y_test, y_pred), 2)) 
     print("F1:", round(metrics.f1_score(y_test, y_pred), 2))
     #print("Matriz de Confusão:")
     cm = confusion_matrix(y_test, y_pred)
-    disp = ConfusionMatrixDisplay(confusion_matrix = cm)
-    disp.plot()
+    disp = ConfusionMatrixDisplay(confusion_matrix = cm, display_labels = labels)
+    fig, ax = plt.subplots(figsize=(12,8))
+    disp.plot(ax = ax)
+    disp.ax_.set(xlabel='Valores Preditos', ylabel='Valores Verdadeiros')
+    disp.ax_.set_title('Matrix de Confusão')
     
 #Curva Roc
 def curva_roc(classificador, x_test, y_test):
     y_pred_proba = classificador.predict_proba(x_test)[::, 1]
     fpr, tpr, _ = metrics.roc_curve(y_test, y_pred_proba)
     auc = metrics.roc_auc_score(y_test, y_pred_proba)
-    plt.rcParams['figure.figsize'] = (20, 8)
+    #plt.rcParams['figure.figsize'] = (20, 8)    
+    plt.subplots(1, figsize=(12,8))    
     plt.plot(fpr, tpr, label = 'LR, auc = ' + str(auc))
     plt.plot([0,1], [0,1], color = 'red', lw = 2, linestyle = '--')
+    plt.plot([0, 0], [1, 0], ls="--", c = 'green'), plt.plot([1, 1], ls="--", c = 'green')
+    plt.title('Curva ROC')
+    plt.xlabel('Especifidade')
+    plt.ylabel('Sensibilidade')         
     plt.legend(loc = 4)
 
 #Comparação de Metricas
-def comp_metricas(classificadores, x, y, SEED):
+def comp_metricas(classificadores, x, y, SEED, labels):
     x_train, x_test, y_train, y_test = treino_teste(x, y, SEED)
     for classifier in classificadores:
         cf = classifier
@@ -104,5 +112,5 @@ def comp_metricas(classificadores, x, y, SEED):
         print(name)
         print('')
         print('****Resultados****')
-        metricas(y_pred, y_test)
+        metricas(y_pred, y_test, labels)
         print('')

@@ -73,7 +73,7 @@ O arquivo detalhado pode ser visto nesse [link](https://github.com/mavenceslau/C
 Ao final do tratamento, foi criada uma unica tabela que contém dados dos clientes, essa tabela foi exportada para um arquivo [.csv](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/tree/master/data/interim),
 que será utilizado durante as próximas semanas do desafio.
 
-## Semana 02 - Aprendendo com os dados: criando um modelo de previsão de inadimplência - Em construção
+## Semana 02 - Aprendendo com os dados: criando um modelo de previsão de inadimplência
 
 Duarante essa semana foi feita uma limpeza mais completa nos dados, como remoção de dados nulos e de outliers. O processo detalhado pode ser visto nesse [notebook](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/blob/master/notebooks/Notebook_01_Limpeza_de_Dados.ipynb).
 
@@ -81,6 +81,6 @@ Foram gerados alguns gráficos para maior entendimento dos dados, nesse [noteboo
 
 E por fim foram criados modelos de classificação e medidos seus desempenhos, o melhor deles foi melhorado com hiperparâmetros, os processos detalhados estão [aqui](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/blob/master/notebooks/Notebook_03_Modelos_Machine_Learning.ipynb).
 
-## Semana 03 - Em construção
+O modelo final foi exportado para o [diretório](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/tree/master/models).
 
-## Semana 04 - Em construção
+## Semanas 03 e 04 - Analisando métricas: criando visualizações com o Power BI - Em construção

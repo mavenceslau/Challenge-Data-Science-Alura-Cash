@@ -83,4 +83,15 @@ E por fim foram criados modelos de classificação e medidos seus desempenhos, o
 
 O modelo final foi exportado para o [diretório](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/tree/master/models).
 
-## Semanas 03 e 04 - Analisando métricas: criando visualizações com o Power BI - Em construção
+## Semanas 03 e 04 - Analisando métricas: criando visualizações com o Power BI
+
+As semanas 03 e 04 tiveram como foco a apresentação das métricas e resultados do trabalho desenvolvido anteriormente. Além de apresentação da solucão final.
+
+Inicialmente foi desenvolvida uma [API](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/blob/master/models/api_modelo.py), para que o modelo de classificação esteja disponível para consumo. A API foi desenvolvida com a linguagem de programação Python juntamente com a biblioteca [FastAPI](https://fastapi.tiangolo.com/).
+
+Para exibição e consulta dos resultados foi utilizado o [Power BI](https://powerbi.microsoft.com/pt-br/), com esse foi possível a vizualização dos resultados do modelo e além de consultar algumas informações de clientes existentes nos cadastros da empresa. O dashboard final pode ser visto abaixo:
+
+[![dashbord](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/blob/master/reports/figures/modelo_print.png)](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/tree/master/reports).
+
+Com isso o problema de de classificação da **Alura Cash** foi resolvido, pois agora a mesma consegue identificar potenciais clientes que podem ser inadimplentes.
+

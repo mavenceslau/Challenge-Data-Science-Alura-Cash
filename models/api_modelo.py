@@ -1,4 +1,3 @@
-import numpy as np
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 import uvicorn
@@ -38,6 +37,20 @@ def predict(pessoa_idade, pessoa_salario_anual, pessoa_status_propriedade, pesso
         'historico_tempo_credito' : [float(historico_tempo_credito)]   
     }   
     
+    colunas = ['pessoa_idade', 'pessoa_salario_anual', 'emprestimo_valor_total',
+       'emprestimo_taxa_juros', 'pessoa_tempo_trabalho',
+       'emprestimo_renda_percentual', 'historico_inadimplencia',
+       'historico_tempo_credito', 'pessoa_status_propriedade_Alugada',
+       'pessoa_status_propriedade_Hipotecada',
+       'pessoa_status_propriedade_Outros', 'pessoa_status_propriedade_Própria',
+       'emprestimo_motivo_Educativo', 'emprestimo_motivo_Empreendimento',
+       'emprestimo_motivo_Melhora do lar', 'emprestimo_motivo_Médico',
+       'emprestimo_motivo_Pagamento de débitos', 'emprestimo_motivo_Pessoal',
+       'emprestimo_pontuacao_A', 'emprestimo_pontuacao_B',
+       'emprestimo_pontuacao_C', 'emprestimo_pontuacao_D',
+       'emprestimo_pontuacao_E', 'emprestimo_pontuacao_F',
+       'emprestimo_pontuacao_G']
+    
     data = pd.DataFrame(data)
     
     #Aplicando encoder
@@ -45,30 +58,34 @@ def predict(pessoa_idade, pessoa_salario_anual, pessoa_status_propriedade, pesso
     ohe = pickle.load(ohe_model)
     data = ohe.transform(data)
     ohe_model.close() 
+    
+    data_final = pd.DataFrame(data, columns = colunas)
             
     #Escalando dados        
     scaler_model = open('models\scaler.pkl', 'rb')
     scaler = pickle.load(scaler_model)
-    data = scaler.transform(data)
+    data_final = scaler.transform(data_final)
     scaler_model.close()    
-    
-    
-    data_final = pd.DataFrame(data, columns = ohe.get_feature_names_out())
+        
+    data_final = pd.DataFrame(data_final, columns = colunas)    
     
     #Fazendo previssão
     modelo = open('models\modelo_classificacao_inadimplencia.pkl', 'rb')
     classificador = pickle.load(modelo)
     modelo.close()    
         
-    result = classificador.predict(data_final)
+    result = classificador.predict(data_final)[0]
     result_proba = classificador.predict_proba(data_final)
         
     if(result == 0):
-        return JSONResponse({'Cliente': 'Adimplente',
+        return JSONResponse({'Cliente' : 'Adimplente',
                              'Probabilidade': result_proba.tolist()[0][0]})
     else:
-        return JSONResponse({'Cliente': 'Inadimplente',
+        return JSONResponse({'Cliente' : 'Inadimplente',
                              'Probabilidade': result_proba.tolist()[0][1]})
+    
+    """return JSONResponse({'Cliente': classificador.predict(data_final).tolist(),
+                       'Probabilidade': result_proba.tolist()})"""
 
 #Criando servidor local
 if __name__ == "__main__":
@@ -77,4 +94,4 @@ if __name__ == "__main__":
         app = app,
         host='127.0.0.1',
         port = port
-    ) 
+    )

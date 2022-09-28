@@ -91,7 +91,7 @@ Inicialmente foi desenvolvida uma [API](https://github.com/mavenceslau/Challenge
 
 Para exibição e consulta dos resultados foi utilizado o [Power BI](https://powerbi.microsoft.com/pt-br/), com esse foi possível a vizualização dos resultados do modelo e além de consultar algumas informações de clientes existentes nos cadastros da empresa. O dashboard final pode ser visto abaixo:
 
-[![dashbord](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/blob/master/reports/figures/modelo_print.png)](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/tree/master/reports).
+[![dashbord](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/blob/master/reports/figures/modelo_print.png)](https://github.com/mavenceslau/Challenge-Data-Science-Alura-Cash/tree/master/reports)
 
 Com isso o problema de de classificação da **Alura Cash** foi resolvido, pois agora a mesma consegue identificar potenciais clientes que podem ser inadimplentes.
 
